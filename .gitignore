@@ -1,6 +1,5 @@
 *.iml
 .gradle
-gradle/
 .idea
 /local.properties
 /.idea/caches
@@ -15,7 +14,4 @@ gradle/
 .externalNativeBuild
 .cxx
 build.gradle
-gradle.properties
-gradlew
-gradlew.bat
-settings.gradle
+
