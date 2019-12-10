@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="88.167" height="88.167" viewBox="0 0 88.167 88.167">
+  <defs>
+    <filter id="Ellipse_309" x="0" y="0" width="88.167" height="88.167" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="add_event" transform="translate(-129 -540)">
+    <g transform="matrix(1, 0, 0, 1, 129, 540)" filter="url(#Ellipse_309)">
+      <circle id="Ellipse_309-2" data-name="Ellipse 309" cx="35.083" cy="35.083" r="35.083" transform="translate(9 6)" fill="#7bc98b"/>
+    </g>
+    <g id="Group_691" data-name="Group 691" transform="translate(158.096 567.214)">
+      <path id="Path_614" data-name="Path 614" d="M5941.5,5139.094v0Z" transform="translate(-5926.513 -5139.094)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path id="Path_615" data-name="Path 615" d="M0,0V0Z" transform="translate(29.975 14.987) rotate(90)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>
