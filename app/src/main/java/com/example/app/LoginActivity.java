@@ -4,14 +4,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //views
     EditText mEmailEt, mPasswordEt;
-    TextView notHaveAccountTv;
+    TextView notHaveAccountTv, mRecoverPassTv;
     Button mLoginBtn;
 
 
@@ -58,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordEt = findViewById(R.id.passwordEt);
         notHaveAccountTv = findViewById(R.id.nothave_accountTv);
         mLoginBtn = findViewById(R.id.loginBtn);
-
+        mRecoverPassTv = findViewById(R.id.recoverPassTv);
 
         //login button click
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -83,15 +87,94 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                finish();
+            }
+        });
+
+        //recover pass
+        mRecoverPassTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRecoverPasswordDialog();
             }
         });
         //init progress dialog
         pd = new ProgressDialog(this);
-        pd.setMessage("Logging In...");
+
+
+    }
+
+    private void showRecoverPasswordDialog() {
+        //alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Recover Password");
+        //set layout liner layout
+        LinearLayout linearLayout = new LinearLayout(this);
+        //views to set in dialog
+        final EditText emailEt = new EditText(this);
+        emailEt.setHint("Email");
+        emailEt.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        emailEt.setMinEms(16);
+
+        linearLayout.addView(emailEt);
+        linearLayout.setPadding(10,10,10,10);
+
+        builder.setView(linearLayout);
+
+        //buttons
+        builder.setPositiveButton("Recover", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            String email = emailEt.getText().toString().trim();
+            beginRecovery(email);
+            }
+        });
+
+        //buttons cancel
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        //show dialog
+        builder.create().show();
+
+
+
+    }
+
+    private void beginRecovery(String email) {
+        //show progress dialog
+        pd.setMessage("Sending email...");
+        pd.show();
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                pd.dismiss();
+                if(task.isSuccessful()){
+                    Toast.makeText(LoginActivity.this,"Email sent",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(LoginActivity.this,"Failed...",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                //get and show proper error message
+                Toast.makeText(LoginActivity.this, ""+e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void loginUser(String email, String passw) {
-
+        //show progress dialog
+        pd.setMessage("Logging In...");
         pd.show();
         mAuth.signInWithEmailAndPassword(email, passw)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

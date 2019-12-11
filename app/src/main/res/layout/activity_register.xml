@@ -9,6 +9,12 @@
 
     tools:context=".RegisterActivity">
 
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
 
     <LinearLayout
@@ -23,11 +29,11 @@
 
         <EditText
             android:id="@+id/passwordEt"
-            android:hint="password"
+            android:hint="Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black"
-            android:textSize="24sp"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="18sp"
             android:inputType="textPassword">
         </EditText>
     </LinearLayout>
@@ -45,8 +51,8 @@
             android:hint="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@android:color/black"
-            android:textSize="24sp"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="18sp"
             android:inputType="textEmailAddress">
         </EditText>
     </LinearLayout>
