@@ -9,56 +9,49 @@
 
 
 
-
-
-
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Register"
-        android:textColor="#000"
-        android:textSize="25sp"/>
 
-     <android.support.design.widget.TextInputLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-         android:layout_centerVertical="true"
-         android:id="@+id/emailTIL">
-         <EditText
-             android:id="@+id/emailEt"
-             android:inputType="textEmailAddress"
-             android:hint="Email"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"/>
-
-     </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:id="@+id/passwordTIL"
-        android:layout_below="@id/emailTIL"
-        app:passwordToggleEnable="true">
+        android:layout_centerInParent="true">
         <EditText
             android:id="@+id/passwordEt"
-            android:inputType="textPassword"
-            android:hint="Password"
+            android:hint="password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/black"
 
-    </android.support.design.widget.TextInputLayout>
+            android:textSize="24sp"
+            android:inputType="textPassword">
+        </EditText>
+
+        <EditText
+            android:id="@+id/emailEt"
+            android:hint="Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/black"
+
+            android:textSize="24sp"
+            android:inputType="textEmailAddress">
+        </EditText>
+
+
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/registerBtn"
-        android:text="Register"
-        android:layout_below="@+id/passwordTIL"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></Button>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:layout_centerHorizontal="true"
+        android:text="Register"/>
 
 </RelativeLayout>
