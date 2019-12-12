@@ -117,8 +117,7 @@ public class ProfileFragment extends Fragment {
         user = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
-        storageReference = getInstance().getReference(); //firebase storage reference
-
+        storageReference = getInstance().getReference();
 
         //init arrays of permissions
         cameraPermissions = new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -264,7 +263,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void showNameAndPhoneUpdateDialog(String key) {
+    private void showNameAndPhoneUpdateDialog(final String key) {
             //customDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Update" + key);
@@ -328,7 +327,7 @@ public class ProfileFragment extends Fragment {
     private void showImagePicDialog() {
 
 
-        String options[] = {"Camera","Gallety"};
+        String options[] = {"Camera","Gallery"};
         //alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         //set title
