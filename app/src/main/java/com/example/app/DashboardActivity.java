@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ProfileActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
 
 
 
@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_dashboard);
 
 
         ActionBar actionBar = getSupportActionBar();
@@ -38,7 +38,7 @@ public class ProfileActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         //init views
-        mProfileTv = findViewById(R.id.profileTv);
+       // mProfileTv = findViewById(R.id.profileTv);
 
     }
     private void checkUserStatus(){
@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         else {
             // user not signed in, go to main activity
-            startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+            startActivity(new Intent(DashboardActivity.this,MainActivity.class));
             finish();
         }
     }
