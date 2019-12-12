@@ -66,6 +66,16 @@
         android:drawablePadding="5dp"
         android:text="Login"/>
 
+    <com.google.android.gms.common.internal.SignInButtonImpl
+        android:id="@+id/googleLoginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/recoverPassTv">
+
+    </com.google.android.gms.common.internal.SignInButtonImpl>
+
+
     <TextView
         android:id="@+id/recoverPassTv"
         android:layout_width="match_parent"
