@@ -153,6 +153,7 @@ public class ProfileFragment extends Fragment {
                     //set data
                     nameTv.setText(name);
                     emailTv.setText(email);
+                    phoneTv.setText(phone);
 
                     try {
                         Picasso.get().load(image).into(avatarTv);
@@ -263,7 +264,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void showNameAndPhoneUpdateDialog(final String key) {
+    private void showNameAndPhoneUpdateDialog(String key) {
             //customDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Update" + key);
@@ -404,7 +405,7 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if(resultCode == RESULT_OK){
 
@@ -423,7 +424,7 @@ public class ProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void uploadProfileCoverPhoto(Uri uri) {
+    private void uploadProfileCoverPhoto(final Uri uri) {
         //show progress dialog
         pd.show();
         //path and name of image to be stored in firebase storage
