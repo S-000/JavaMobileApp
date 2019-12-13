@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.models;
 
 public class ModelUser {
     //use same name as in faribase database
