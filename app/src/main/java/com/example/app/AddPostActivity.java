@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -131,13 +132,17 @@ public class AddPostActivity extends AppCompatActivity {
                         requestStoragePermission();
                     }
                     else {
-                        pickFromCamera();
+                        pickFromGallery();
                     }
                 }
             }
         });
         //create and show dialog
         builder.create().show();
+    }
+
+    private void pickFromGallery() {
+
     }
 
     private void pickFromCamera() {
@@ -231,5 +236,45 @@ public class AddPostActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
 
+    }
+    //handle permission result
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
+        switch (requestCode){
+            case CAMERA_REQUEST_CODE:{
+                if(grantResults.length > 0){
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean srorageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    if(cameraAccepted && srorageAccepted){
+                        pickFromCamera();
+                    }
+                    else {
+                        Toast.makeText(this,"Camera & Storage both permission are necessary...",Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+                else {
+
+                }
+            }
+            break;
+            case STORAGE_REQUEST_CODE:{
+                if(grantResults.length>0){
+                    boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    if(storageAccepted){
+                        pickFromGallery();
+                    }
+                }
+                else {
+                    Toast.makeText(this,"Storage permission are necessary...",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            break;
+        }
     }
 }
