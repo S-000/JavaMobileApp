@@ -80,7 +80,8 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
 
     @Override
     public int getItemCount() {
-        return userList.size();
+
+       return userList.size();
     }
 
 
