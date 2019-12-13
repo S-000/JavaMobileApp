@@ -31,28 +31,28 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
 
     @NonNull
     @Override
-    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
        //inflate layout(row_user.xml
-        View view = LayoutInflater.from(context).inflate(R.layout.row_users, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.row_users, viewGroup, false);
 
 
         return new MyHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
 
        //get data
-        String userImage = userList.get(position).getImage();
-        String userName = userList.get(position).getName();
-        final String userEmail = userList.get(position).getEmail();
+        String userImage = userList.get(i).getImage();
+        String userName = userList.get(i).getName();
+        final String userEmail = userList.get(i).getEmail();
 
         //set data
-        holder.mNameTv.setText(userName);
-        holder.mEmailTv.setText(userEmail);
+        myHolder.mNameTv.setText(userName);
+        myHolder.mEmailTv.setText(userEmail);
         try{
-            Picasso.get().load(userImage).placeholder(R.drawable.ic_default_img).into(holder.mAvatarTv);
+            Picasso.get().load(userImage).placeholder(R.drawable.ic_default_img).into(myHolder.mAvatarTv);
 
         }
         catch (Exception e){
@@ -60,10 +60,10 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
         }
 
         //handle item click
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, ""+userEmail, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, ""+ userEmail, Toast.LENGTH_SHORT).show();
 
             }
         });

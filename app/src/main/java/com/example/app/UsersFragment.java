@@ -23,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.app.R.layout.fragment_users;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +35,7 @@ public class UsersFragment extends Fragment {
     AdapterUsers adapterUsers;
     List<ModelUser> userList;
 
-
+    // com.android.support.recyclerview
     public UsersFragment() {
         // Required empty public constructor
     }
@@ -44,7 +46,7 @@ public class UsersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view =  inflater.inflate(R.layout.fragment_users, container, false);
+        View view =  inflater.inflate(fragment_users, container, false);
 
         //init recyclerview
 
@@ -66,7 +68,7 @@ public class UsersFragment extends Fragment {
     private void getAllUsers() {
 
         //get current user
-        final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+         final FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
         //get path of database named "Users" containing users info
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         //get all data from path
