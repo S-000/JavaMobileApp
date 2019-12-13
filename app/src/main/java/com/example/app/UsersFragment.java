@@ -23,8 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.app.R.layout.fragment_users;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,11 +44,11 @@ public class UsersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view =  inflater.inflate(fragment_users, container, false);
+        View view =  inflater.inflate(R.layout.fragment_users, container, false);
 
         //init recyclerview
 
-        recyclerView = view.findViewById(R.id.user_recyclerView);
+        recyclerView = view.findViewById(R.id.users_recyclerView);
         //set it's properties
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
