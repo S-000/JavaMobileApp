@@ -35,8 +35,12 @@ dependencies {
     //androidX
     implementation 'com.google.android.material:material:1.2.0-alpha02'
     implementation 'androidx.appcompat:appcompat:1.2.0-alpha01'
-    implementation 'androidx.recyclerview:recyclerview'
-    implementation 'androidx.cardview:cardview'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-beta01"
+
 \
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
