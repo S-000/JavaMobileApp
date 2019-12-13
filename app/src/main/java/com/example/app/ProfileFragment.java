@@ -549,6 +549,11 @@ public class ProfileFragment extends Fragment {
 
         }
 
+        if(id == R.id.action_add_post){
+            startActivity(new Intent(getActivity(),AddPostActivity.class));
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
