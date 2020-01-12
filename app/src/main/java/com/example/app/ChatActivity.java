@@ -78,10 +78,11 @@ public class ChatActivity extends AppCompatActivity {
 
 
         //init views
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("");
         recyclerView = findViewById(R.id.chat_recyclerView);
+        Toolbar toolbar = findViewById(R.id.toolbarT);
+
+//        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
         profileTv = findViewById(R.id.profileTv);
         nameTv = findViewById(R.id.nameTv);
         userStatusTv = findViewById(R.id.userStatusTv);
