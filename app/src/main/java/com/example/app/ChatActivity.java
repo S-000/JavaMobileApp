@@ -23,6 +23,13 @@ import android.widget.Toast;
 
 import com.example.app.adapters.AdapterChat;
 import com.example.app.models.ModelChat;
+import com.example.app.models.ModelUser;
+import com.example.app.notifications.APIService;
+import com.example.app.notifications.Client;
+import com.example.app.notifications.Data;
+import com.example.app.notifications.Response;
+import com.example.app.notifications.Sender;
+import com.example.app.notifications.Token;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +43,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 public class ChatActivity extends AppCompatActivity {
@@ -66,7 +76,8 @@ public class ChatActivity extends AppCompatActivity {
     String hisImage;
 
 
-
+    APIService apiService;
+    boolean notify = false;
 
 
 
@@ -94,6 +105,10 @@ public class ChatActivity extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        //create api service
+        apiService = Client.getRetrofit("https://fcm.googleapis.com/").create(APIService.class);
+
 
         Intent intent = getIntent();
 
@@ -139,6 +154,7 @@ public class ChatActivity extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                notify = true;
                 //get text from edit text
                 String message = messageEt.getText().toString().trim();
                 //check if text is empty or not
@@ -150,6 +166,9 @@ public class ChatActivity extends AppCompatActivity {
                     //text not empty
                     sendMessage(message);
                 }
+                //reset edittext after sending message
+                messageEt.setText("");
+
             }
         });
 
@@ -212,7 +231,7 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private void sendMessage(String message) {
+    private void sendMessage(final String message) {
 
 
 
@@ -230,10 +249,58 @@ public class ChatActivity extends AppCompatActivity {
         hashMap.put("isSeen",false);
         databaseReference.child("Chats").push().setValue(hashMap);
 
-        //reset edittext after sending message
-        messageEt.setText("");
 
+       // String msg = message;
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users").child(myUid);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ModelUser user = dataSnapshot.getValue(ModelUser.class);
 
+                if(notify){
+                    senNotification(hisUid,user.getName(),message);
+                }
+                notify = false;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void senNotification(final String hisUid, final String name, final String message) {
+        DatabaseReference allTokens = FirebaseDatabase.getInstance().getReference("Tokens");
+        Query query = allTokens.orderByKey().equalTo(hisUid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    Token token = ds.getValue(Token.class);
+                    Data data = new Data(myUid,name+":"+message, "New Message",hisUid,R.drawable.ic_default_img);
+                    Sender sender = new Sender(data, token.getToken());
+                    apiService.sendNotification(sender).enqueue(new Callback<Response>() {
+                        @Override
+                        public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                            Toast.makeText(ChatActivity.this, ""+response.message(),Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Response> call, Throwable t) {
+
+                        }
+                    });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void checkUserStatus(){
