@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1EDED"
+    android:background="@drawable/background"
     tools:context=".ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,7 +11,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/background">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -22,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="fitXY"
-                android:background="@color/colorPrimaryDark">
+                android:background="@color/colorPrimary">
 
             </ImageView>
 
@@ -34,7 +35,7 @@
 
                 <ImageView
                     android:id="@+id/avatarTv"
-                    android:background="@android:color/holo_red_dark"
+                    android:background="#FFB6C1"
                     android:padding="5dp"
                     android:src="@drawable/ic_default_img_white"
                     android:layout_marginStart="20dp"
