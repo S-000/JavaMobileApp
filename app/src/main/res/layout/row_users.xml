@@ -4,10 +4,11 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="2dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="@android:color/darker_gray"
+    app:cardBackgroundColor="@color/colorPrimary"
     app:contentPadding="3dp">
 
 
@@ -19,8 +20,8 @@
 
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
             android:id="@id/avatarTv"
-            android:src="@drawable/ic_default_img"
-            android:background="@android:color/black"
+            android:src="@drawable/ic_default_face"
+            android:background="@color/colorPrimary"
             android:layout_width="70dp"
             android:layout_height="70dp"/>
 

@@ -141,11 +141,11 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder>{
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds: dataSnapshot.getChildren()){
 
-                    if(ds.child("sender").getRef().equals(myUID)){
-                    //   ds.getRef().removeValue();/////////////////////////////////////////////////ficha Seva
-                        HashMap<String,Object> hashMap = new HashMap<>();
-                        hashMap.put("message","This message was deleted...");
-                        ds.getRef().updateChildren(hashMap);
+                    if(ds.child("sender").getValue().equals(myUID)){
+                       ds.getRef().removeValue();/////////////////////////////////////////////////ficha Seva
+                     //   HashMap<String,Object> hashMap = new HashMap<>();
+                       // hashMap.put("message","This message was deleted...");
+                        //ds.getRef().updateChildren(hashMap);
 
                         Toast.makeText(context,"message deleted...",Toast.LENGTH_SHORT).show();
 
