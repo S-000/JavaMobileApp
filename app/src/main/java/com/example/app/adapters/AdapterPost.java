@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +62,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
         holder.uNameTv.setText(uName);
         holder.pTimeTv.setText(pTime);
         holder.pTitleTv.setText(pTime);
+        holder.pDescriptionTv.setText(pDescr);
 
         try{
             Picasso.get().load(uDp).placeholder(R.drawable.ic_default_img).into(holder.uPictureIv);
@@ -68,6 +70,20 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
         catch (Exception e){
 
         }
+
+        if(pImage.equals("noImage"))
+        {
+            holder.pImageIv.setVisibility(View.GONE);
+        }
+        else {
+            try {
+                Picasso.get().load(pImage).into(holder.pImageIv);
+            }
+            catch (Exception e){
+
+            }
+        }
+
         try {
             Picasso.get().load(pImage).into(holder.pImageIv);
         }
@@ -75,6 +91,34 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
 
         }
 
+        holder.moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "More", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        holder.likeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Like", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        holder.commentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Comment", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        holder.shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Share", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 
@@ -85,7 +129,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
 
     class  MyHolder extends RecyclerView.ViewHolder{
         ImageView uPictureIv, pImageIv;
-        TextView uNameTv, pTimeTv, pDescriptionTv, pLikesTv;
+        TextView uNameTv, pTimeTv, pDescriptionTv, pLikesTv, pTitleTv;
         ImageButton moreBtn;
         Button likeBtn, commentBtn, shareBtn;
 
@@ -102,6 +146,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
             likeBtn = itemView.findViewById(R.id.likeBtn);
             commentBtn = itemView.findViewById(R.id.commentBtn);
             shareBtn = itemView.findViewById(R.id.shareBtn);
+            pTitleTv = itemView.findViewById(R.id.pTitleTv);
         }
     }
 }
