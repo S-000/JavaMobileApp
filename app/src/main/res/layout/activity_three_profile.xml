@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".ProfileFragment">
+    tools:context=".ThreeProfileActivity">
 
     <!-- TODO: Update blank fragment layout -->
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -79,6 +75,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+
                 android:id="@+id/recyclerview_posts"
                 android:layout_below="@id/linearLayout"
                 android:layout_width="match_parent"
@@ -86,20 +83,8 @@
 
         </RelativeLayout>
 
-
-    </ScrollView>
+</ScrollView>
 
 
     <!--Floating action button-->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:src="@drawable/ic_edit_white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:layout_alignParentRight="true"/>
 
-
-</RelativeLayout>
