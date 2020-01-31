@@ -9,22 +9,10 @@ public class ModelPost {
     String pTime;
     String uDp;
     String uName;
-
-    public String getuEmail() {
-        return uEmail;
-    }
-
-    public void setuEmail(String uEmail) {
-        this.uEmail = uEmail;
-    }
-
     String uEmail;
+    String pLikes;
 
-    public ModelPost(){
-
-    }
-
-    public ModelPost(String pId, String uEmail, String pTitle, String pDescr, String pImage, String uid, String pTime, String uDp, String uName) {
+    public ModelPost(String pId, String pTitle, String pDescr, String pImage, String uid, String pTime, String uDp, String uName, String uEmail, String pLikes) {
         this.pId = pId;
         this.pTitle = pTitle;
         this.pDescr = pDescr;
@@ -34,6 +22,10 @@ public class ModelPost {
         this.uDp = uDp;
         this.uName = uName;
         this.uEmail = uEmail;
+        this.pLikes = pLikes;
+    }
+
+    public ModelPost() {
     }
 
     public String getpId() {
@@ -98,5 +90,21 @@ public class ModelPost {
 
     public void setuName(String uName) {
         this.uName = uName;
+    }
+
+    public String getuEmail() {
+        return uEmail;
+    }
+
+    public void setuEmail(String uEmail) {
+        this.uEmail = uEmail;
+    }
+
+    public String getpLikes() {
+        return pLikes;
+    }
+
+    public void setpLikes(String pLikes) {
+        this.pLikes = pLikes;
     }
 }
