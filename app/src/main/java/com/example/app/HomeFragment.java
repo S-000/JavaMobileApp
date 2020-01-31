@@ -98,7 +98,8 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void searchPosts(final String searchQuery){ DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+    private void searchPosts(final String searchQuery){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -110,7 +111,7 @@ public class HomeFragment extends Fragment {
                             || modelPost.getpDescr().toLowerCase().contains(searchQuery.toLowerCase())){
                         postList.add(modelPost);
                     }
-                    postList.add(modelPost);
+//                    postList.add(modelPost);
                     adapterPost = new AdapterPost(getActivity(), postList);
                     recycleView.setAdapter(adapterPost);
                 }
