@@ -98,7 +98,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder> {
 
         holder.uNameTv.setText(uName);
         holder.pTimeTv.setText(pTime);
-        holder.pTitleTv.setText(pTime);
+        holder.pTitleTv.setText(pTitle);
         holder.pDescriptionTv.setText(pDescr);
         holder.pLikesTv.setText(pLikes + " Likes");
 
