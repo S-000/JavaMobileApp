@@ -10,7 +10,7 @@ public class ModelPost {
     String uDp;
     String uName;
     String uEmail;
-    String pLikes;
+    String pLikes = "0";
 
     public ModelPost(String pId, String pTitle, String pDescr, String pImage, String uid, String pTime, String uDp, String uName, String uEmail, String pLikes) {
         this.pId = pId;
